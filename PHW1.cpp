@@ -128,3 +128,15 @@ void displayAllRecords(Student *head)
         temp = temp->next;
     }
 };
+
+void displayMenu()
+{
+    cout << "    Welcom" << endl;
+    cout << "    menu" << endl;
+    cout << "1. add student" << endl;
+    cout << "2. delete student" << endl;
+    cout << "3. search student" << endl;
+    cout << "4. update student" << endl;
+    cout << "5. displayAllRecords" << endl;
+    cout << "0. exit" << endl;
+}
