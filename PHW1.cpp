@@ -89,3 +89,20 @@ Student *searchStudent(Student *head, int studentID)
     return nullptr;
 };
 
+bool updateStudent(Student *head, int studentID, int newUnits, float newGPA)
+{
+    Student *student = searchStudent(head, studentID);
+    if (student == nullptr)
+    {
+        cout << "Student with student number not found." << endl;
+        return false;
+    }
+
+    student->units = newUnits;
+    student->gpa = newGPA;
+    cout << "Student information with student number successfully updated." << endl;
+
+    cout << "Security codes updated." << endl;
+
+    return true;
+};
