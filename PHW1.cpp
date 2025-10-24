@@ -76,3 +76,16 @@ bool deleteStudent(Student *&head, int studentID)
     cout << "Student with student number not found." << endl;
     return false;
 };
+
+Student *searchStudent(Student *head, int studentID)
+{
+    Student *temp = head;
+    while (temp != nullptr)
+    {
+        if (temp->studentID == studentID)
+            return temp;
+        temp = temp->next;
+    }
+    return nullptr;
+};
+
