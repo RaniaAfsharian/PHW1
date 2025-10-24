@@ -40,3 +40,39 @@ void addstudent(Student *&head, const string &name, int studentID, int units, fl
 
     cout << "New student added successfully." << endl;
 };
+
+bool deleteStudent(Student *&head, int studentID)
+{
+    if (head == nullptr)
+    {
+        cout << "The student list is empty." << endl;
+        return false;
+    }
+
+    if (head->studentID == studentID)
+    {
+        Student *temp = head;
+        head = head->next;
+        delete temp;
+        cout << "The student was successfully deleted." << endl;
+        return true;
+    }
+
+    Student *prev = head;
+    Student *curr = head->next;
+
+    while (curr != nullptr)
+    {
+        if (curr->studentID == studentID)
+        {
+            prev->next = curr->next;
+            delete curr;
+            cout << "The student was successfully deleted." << endl;
+            return true;
+        }
+        prev = curr;
+        curr = curr->next;
+    }
+    cout << "Student with student number not found." << endl;
+    return false;
+};
