@@ -140,3 +140,136 @@ void displayMenu()
     cout << "5. displayAllRecords" << endl;
     cout << "0. exit" << endl;
 }
+
+
+int main()
+{
+    Student *studentList = nullptr;
+    int n;
+
+    do
+    {
+        displayMenu();
+        cout << "Enter your choice: ";
+
+        if (!(cin >> n))
+        {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            n = -1; 
+            cout << "Invalid input. Please enter a number." << endl;
+            continue;
+        }
+
+        switch (n)
+        {
+        case 1:
+        {
+            string Sname;
+            int SstudentID;
+            int Sunits;
+            float Sgpa;
+            string SsecurityCode;
+
+            cout << "Enter a name:";
+            cin >> Sname;
+            cout << "Enter studentID:";
+            cin >> SstudentID;
+            cout << "Enter units:";
+            cin >> Sunits;
+            cout << "Enter gpa:";
+            cin >> Sgpa;
+            cout << "Enter securityCode (4 digits):";
+            cin >> SsecurityCode; 
+
+            addstudent(studentList, Sname, SstudentID, Sunits, Sgpa, SsecurityCode);
+            
+            break;
+        }
+
+        case 2:
+        {
+            int SstudentID;
+
+            cout << "Enter StudentID to delete: ";
+            cin >> SstudentID;
+
+            deleteStudent(studentList, SstudentID);
+
+            break;
+        }
+
+        case 3:
+        {
+            int SstudentID;
+
+            cout << "Enter StudentID to search: ";
+            cin >> SstudentID;
+
+            Student *result = searchStudent(studentList, SstudentID);
+
+            if (result != nullptr)
+            {
+                cout << "Name: " << result->name
+                     << ", StudentID: " << result->studentID
+                     << ", units: " << result->units
+                     << ",  gpa: " << result->gpa
+                     << ", securityCode: " << result->securityCode
+                     << endl;
+            }
+            else
+            {
+                cout << "Student with student number not found." << endl;
+            }
+
+            break;
+        }
+
+        case 4:
+        {
+            int SstudentID;
+            int Sunits;
+            float Sgpa;
+
+            cout << "Enter studentID to update:";
+            cin >> SstudentID;
+            cout << "Enter new units:";
+            cin >> Sunits;
+            cout << "Enter new gpa:";
+            cin >> Sgpa;
+
+            updateStudent(studentList, SstudentID, Sunits, Sgpa);
+
+            break;
+        }
+
+        case 5:
+        {
+            displayAllRecords(studentList);
+
+            break;
+        }
+
+        case 0:
+        {
+            break; 
+        }
+
+        default:
+        {
+            cout << "Invalid choice. Please try again or enter 0 to exit." << endl;
+            break;
+        }
+        }
+
+    } while (n != 0); 
+
+    while (studentList != nullptr)
+    {
+        Student *temp = studentList;
+        studentList = studentList->next;
+        delete temp; 
+    }
+
+    return 0;
+}
