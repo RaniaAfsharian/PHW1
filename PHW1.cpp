@@ -106,3 +106,25 @@ bool updateStudent(Student *head, int studentID, int newUnits, float newGPA)
 
     return true;
 };
+
+void displayAllRecords(Student *head)
+{
+    if (head == nullptr)
+    {
+        cout << "List is empty." << endl;
+        return;
+    }
+
+    Student *temp = head;
+    while (temp != nullptr)
+    {
+        cout << "Name: " << temp->name
+             << ", StudentID: " << temp->studentID
+             << ", units: " << temp->units
+             << ",  gpa: " << temp->gpa
+             << ", securityCode: " << temp->securityCode
+             << "***************************************"
+             << endl;
+        temp = temp->next;
+    }
+};
